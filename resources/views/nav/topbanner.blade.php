@@ -1,0 +1,1 @@
+<img class="w-full object-cover h-32 border-y-2 border-vintage-white" src="/img/placeholder.png" />
