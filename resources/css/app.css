@@ -4,3 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.link {
+    @apply underline text-bright-blue
+}
+
+.image {
+    @apply border-2 border-bright-blue
+}
+
+.hover-link {
+    @apply hover:text-bright-blue
+}

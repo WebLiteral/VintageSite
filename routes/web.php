@@ -27,12 +27,14 @@ require __DIR__.'/auth.php';
 
 
 
+Route::view('/contact', 'contact');
+
+Route::view('/privacy-policy', 'privacy-policy');
 
 Route::view('/about', 'about');
 
 Route::view('/changelog', 'changelog');
 
-Route::view('/community/fanart', [FanartController::class, 'index']);
 
 Route::get('/discography', [MusicController::class, 'index']);
 Route::get('/discography/{slug}', [MusicController::class, 'show']);

@@ -32,7 +32,7 @@ export default {
                 'vintage-darkgray': '#16161c',
                 'vintage-steel': '#6e6e7d',
                 'vintage-black': '#101010',
-
+                'bright-blue': '#0000FF',
 
             },
             fontFamily: {
