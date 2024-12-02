@@ -1,40 +1,21 @@
 @extends('layouts.base')
 
-@section('title', 'Gallery')
+@section('title', 'All Collections')
 
 @section('content')
 
-
-<div class='flex flex-col items-center font-cambria '>
-
-    <h1 class="text-7xl w-max  pb-3 pt-1 px-4 m-10">{{$collection->title}}</h1>
-    <img src="{{$collection->file_url}}"></img>
-
-
-    <div class="w-3/5 space-y-2">
-        <ul>
-
-
-            @foreach($allArtworksFromCollection as $artwork)
-                <a href="/gallery/artwork/{{$artwork->slug}}">
-                    <li class="pt-5">
-                        <div>
-                        <img src="{{$artwork->file_url}}" style="height: 100px"></img>
-                            <h2 class="text-2xl">{{$artwork->id}} | {{$artwork->title}}</h2>
-                            <p class="text-sm italic">{{$artwork->description}}</p>
-                        </div>
-                    </li>
-                </a>
-
-            @endforeach
-
-
-        </ul>
-    </div>
-</div>
-
-
-
+<hr class="separator" />
+@foreach($allCollections as $collection)
+    <ul>
+        <li class="flex items-center link p-2 space-x-4">
+            <a href="{{ route('collections.show', ['slug' => $collection->slug]) }}">
+                <img class="image w-32" src="{{$collection->file_url}}" />
+                <h2>{{$collection->title}}</h2>
+            </a>
+        </li>
+    </ul>
+@endforeach
+<hr class="separator" />
 
 
 @endsection

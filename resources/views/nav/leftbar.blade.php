@@ -2,7 +2,7 @@
 
     <p class="uppercase p-1 bg-vintage-red border-t-2 border-vintage-red-shine px-2">Work I've Done</p>
     <ul class="text-vintage-steel border-y-3 border-black py-2 px-4 flex flex-col space-y-1">
-        <li><a class="hover-link" href="">Artworks</a></li>
+        <li><a class="hover-link" href="{{route('artworks.landing')}}">Artworks</a></li>
         <hr class="h-px bg-vintage-navy border-0">
         <li><a class="hover-link" href="">Discography</a></li>
         <hr class="h-px bg-vintage-navy border-0">

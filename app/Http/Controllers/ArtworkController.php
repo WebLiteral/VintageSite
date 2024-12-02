@@ -12,9 +12,16 @@ class ArtworkController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function landing()
+    {
+      return view('artworks.landing');
+    }
+
+
     public function index()
     {
-      
+      $allArtworks = Artwork::select('title', 'file_url')->paginate(12);
+      return view('artworks.index')->with('allArtworks', $allArtworks);
     }
 
     /**
@@ -38,9 +45,7 @@ class ArtworkController extends Controller
      */
     public function show($slug)
     {
-        $artwork = Artwork::where('slug', $slug)->first();
-
-        return view('artworks.show', compact('artwork'));
+      
     }
 
     /**

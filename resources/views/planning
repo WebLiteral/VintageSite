@@ -1,0 +1,5 @@
+Landing page: /artworks
+All artworks: /artworks/all
+Artworks by collection: /artworks/collections/{collection_slug}
+Random artwork: /artworks/random
+Specific artwork: /artworks/{artwork_slug}

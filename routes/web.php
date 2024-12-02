@@ -33,7 +33,17 @@ Route::view('/privacy-policy', 'privacy-policy');
 
 Route::view('/about', 'about');
 
+
 Route::view('/changelog', 'changelog');
+
+
+// Routes for artworks only (NOT collections)
+Route::get('/artworks', [ArtworkController::class, 'landing'])->name('artworks.landing');
+Route::get('/artworks/all', [ArtworkController::class, 'index'])->name('artworks.index');
+
+Route::get('/artworks/collections/all', [CollectionController::class, 'index'])->name('collections.index');
+Route::get('/artworks/collections/{slug}', [CollectionController::class, 'show'])->name('collections.show');
+
 
 
 Route::get('/discography', [MusicController::class, 'index']);
@@ -41,7 +51,7 @@ Route::get('/discography/{slug}', [MusicController::class, 'show']);
 
 
 Route::get('/gallery', [CollectionController::class, 'index']);
-Route::get('/gallery/collection/{slug}', [CollectionController::class, 'show']);
+
 Route::get('/gallery/artwork/{slug}', [ArtworkController::class, 'show']);
 
 Route::get('/articles', [ArticleController::class, 'index']);

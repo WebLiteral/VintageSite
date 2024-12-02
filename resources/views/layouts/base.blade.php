@@ -25,6 +25,9 @@
 
                 <div class="w-full px-4">
 
+
+                <h1 class="font-bold text-3xl my-6"> @yield('title') </h1>
+
                     @yield('content')
 
 

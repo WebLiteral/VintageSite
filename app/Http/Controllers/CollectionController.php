@@ -12,12 +12,10 @@ class CollectionController extends Controller
     /**
      * Display a listing of the resource.
      */
-
-
     public function index()
     {
-        $collection = Collection::all();
-        return view('artworks.index')->with('allCollections', $collection);
+        $allCollections = Collection::All('title', 'file_url', 'slug');
+        return view('collections.index')->with('allCollections', $allCollections);
     }
 
     /**
