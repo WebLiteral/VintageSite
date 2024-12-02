@@ -14,14 +14,14 @@ class ArtworkController extends Controller
      */
     public function landing()
     {
-      return view('artworks.landing');
+        return view('artworks.landing');
     }
 
 
     public function index()
     {
-      $allArtworks = Artwork::select('title', 'file_url')->paginate(12);
-      return view('artworks.index')->with('allArtworks', $allArtworks);
+        $allArtworks = Artwork::select('title', 'file_url', 'slug')->paginate(12);
+        return view('artworks.index')->with('allArtworks', $allArtworks);
     }
 
     /**
@@ -45,7 +45,8 @@ class ArtworkController extends Controller
      */
     public function show($slug)
     {
-      
+        $artwork = Artwork::where('slug', $slug)->first();
+        return view('artworks.show', compact('artwork'));
     }
 
     /**
@@ -55,6 +56,51 @@ class ArtworkController extends Controller
     {
         //
     }
+
+    public function navigate($slug, $action)
+    {
+        $artwork = Artwork::where('slug', $slug)->firstOrFail();
+
+        switch ($action) {
+            case 'first':
+                $nextArtwork = Artwork::orderBy('creation_date')->orderBy('id')->first();
+                break;
+                case 'previous':
+                    // Get the previous artwork by creation date and id
+                    $nextArtwork = Artwork::where('creation_date', '<', $artwork->creation_date)
+                        ->orWhere(function ($query) use ($artwork) {
+                            $query->where('creation_date', '=', $artwork->creation_date)
+                                  ->where('id', '<', $artwork->id); // Order by id when dates are equal
+                        })
+                        ->orderBy('creation_date', 'desc')
+                        ->orderBy('id', 'desc') // Reverse the id order for previous
+                        ->first();
+                    break;
+            case 'random':
+                $nextArtwork = Artwork::inRandomOrder()->first();
+                break;
+            case 'next':
+                $nextArtwork = Artwork::where('creation_date', '>', $artwork->creation_date)
+                    ->orWhere(function ($query) use ($artwork) {
+                        $query->where('creation_date', '=', $artwork->creation_date)
+                            ->where('id', '>', $artwork->id);
+                    })
+                    ->orderBy('creation_date')
+                    ->orderBy('id') // Regular order for next
+                    ->first();
+                break;
+            case 'last':
+                // Last artwork, ordered by created_at and id
+                $nextArtwork = Artwork::orderBy('creation_date', 'desc')->orderBy('id', 'desc')->first();
+                break;
+            default:
+                abort(404);
+        }
+
+        return redirect()->route('artworks.show', ['slug' => $nextArtwork->slug]);
+    }
+
+
 
     /**
      * Update the specified resource in storage.

@@ -43,7 +43,7 @@ class CollectionController extends Controller
 
         $artwork = $collection->artworks;
 
-        return view('collections.index')->with(
+        return view('collections.show')->with(
             [
                 'allArtworksFromCollection' => $artwork,
                 'collection' => $collection

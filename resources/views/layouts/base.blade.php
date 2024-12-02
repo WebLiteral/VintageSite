@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'LiteralHat.com')</title>
+    <title>LiteralHat | @yield('title', 'LiteralHat.com')</title>
     @vite(['resources/css/app.css', 'resources/js/randomsong.js'])
 </head>
 
-<div class="bg-vintage-navy w-screen h-screen flex justify-center">
+<div class="bg-stripe-navy w-screen h-screen flex justify-center">
 
     <div
         class="bg-vintage-white h-screen w-full max-w-[1800px] border-x-8 border-vintage-red outline outline-black outline-4 shadow-lg shadow-black">
@@ -26,7 +26,6 @@
                 <div class="w-full px-4">
 
 
-                <h1 class="font-bold text-3xl my-6"> @yield('title') </h1>
 
                     @yield('content')
 

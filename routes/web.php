@@ -40,6 +40,10 @@ Route::view('/changelog', 'changelog');
 // Routes for artworks only (NOT collections)
 Route::get('/artworks', [ArtworkController::class, 'landing'])->name('artworks.landing');
 Route::get('/artworks/all', [ArtworkController::class, 'index'])->name('artworks.index');
+Route::get('/artworks/{slug}', [ArtworkController::class, 'show'])->name('artworks.show');
+Route::get('/artworks/{slug}/navigate/{action}', [ArtworkController::class, 'navigate'])->name('artworks.navigate');
+
+
 
 Route::get('/artworks/collections/all', [CollectionController::class, 'index'])->name('collections.index');
 Route::get('/artworks/collections/{slug}', [CollectionController::class, 'show'])->name('collections.show');
@@ -52,7 +56,6 @@ Route::get('/discography/{slug}', [MusicController::class, 'show']);
 
 Route::get('/gallery', [CollectionController::class, 'index']);
 
-Route::get('/gallery/artwork/{slug}', [ArtworkController::class, 'show']);
 
 Route::get('/articles', [ArticleController::class, 'index']);
 Route::get('/articles/{slug}', [ArticleController::class, 'show']);

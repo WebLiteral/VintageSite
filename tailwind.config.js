@@ -63,6 +63,11 @@ export default {
                     'background-size': '30px 30px',
                     'background-color': '#ffffff',
                 },
+                '.bg-stripe-navy': {
+                    'background-image': 'linear-gradient(0deg, transparent 50%, #31323c 50%)',
+                    'background-size': '40px 40px',
+                    'background-color': '#2b2c37',
+                },
 
                 '.border-r-3': {
                     borderRightWidth: theme('spacing.3'),

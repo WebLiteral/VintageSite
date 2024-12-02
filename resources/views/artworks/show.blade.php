@@ -1,43 +1,61 @@
 @extends('layouts.base')
 
-@section('title', 'Gallery')
+@section('title', $artwork->title)
 
 @section('content')
 
-<div class="flex flex-col items-center">
-    <h1 class="font-oldenglish text-7xl text-center pb-1 pt-10 px-4 m-5">#{{$artwork->id}} - {{$artwork->title}}</h1>
-    <div class="border-t-2 w-full flex items-center flex-col">
-        <ul class="uppercase font-bebas text-2xl p-6 w-2/3 flex w-full justify-between text-3xl text-center">
-            <li><a>〈 Prev</a></li>
-            <li><a>Random</a></li>
-            <li><a>Next 〉</a></li>
+<div class="flex justify-start flex-col items-center mx-8">
+    <h1 class="h1 text-center"> @yield('title') </h1>
+
+    @php
+        $actions = [
+            'first' => '|<',
+            'previous' => '< Prev',
+            'random' => 'Random',
+            'next' => 'Next >',
+            'last' => '> |',
+        ];
+    @endphp
+
+    <div class="flex justify-between w-3/5 m-4 text-white">
+        @foreach ($actions as $action => $label)
+            <a class="boringbutton"
+                href="{{ route('artworks.navigate', ['slug' => $artwork->slug, 'action' => $action]) }}">
+                {{ $label }}
+            </a>
+        @endforeach
+    </div>
+
+    <img class='image' src="{{$artwork->file_url}}" />
+
+
+
+    <div class="flex justify-between w-3/5 m-4 text-white">
+        @foreach ($actions as $action => $label)
+            <a class="boringbutton"
+                href="{{ route('artworks.navigate', ['slug' => $artwork->slug, 'action' => $action]) }}">
+                {{ $label }}
+            </a>
+        @endforeach
+    </div>
+
+
+
+    <h3 class="font-bold text-2xl p-2">Artwork Information</h3>
+
+    <p class="p italic">{{$artwork->description}}</p>
+
+    <div class="p-2">
+        <ul>
+            <li><span class="font-bold">Title:</span> {{$artwork->title}}</li>
+            <li><span class="font-bold">Date Created:</span> {{$artwork->creation_date}}</li>
+            <li><span class="font-bold">Medium:</span> {{$artwork->medium}}</li>
+            <li><span class="font-bold">Dimensions:</span> {{$artwork->dimensions}}</li>
+            <li><span class="font-bold">Artwork ID:</span> #{{$artwork->id}}</li>
         </ul>
     </div>
-</div>
 
-<div class='flex justify-center px-52 font-cambria border-b-2 pb-10 mb-24'>
-    <div class="w-7/12">
-        <img class="p-10 w-full h-full" src="{{$artwork->file_url}}"></img>
-    </div>
-
-    <div class="w-5/12 py-16 text-xl pb-52">
-        <ul class="space-y-5">
-            <li><span class="lh-artworklabel">Title</span><span class="lh-artworklabel2">{{$artwork->title}}</span></li>
-            <li><span class="lh-artworklabel">Artwork No.</span><span class="lh-artworklabel2">#{{$artwork->id}}</span>
-            </li>
-            <li><span class="lh-artworklabel">Date Created</span><span
-                    class="lh-artworklabel2">{{$artwork->date_created}}</span></li>
-            <li><span class="lh-artworklabel">Medium</span><span class="lh-artworklabel2">{{$artwork->medium}}</span>
-            </li>
-            <li><span class="lh-artworklabel">Dimensions</span><span
-                    class="lh-artworklabel2">{{$artwork->dimensions}}</span></li>
-        </ul>
-    </div>
 
 </div>
-
-
-
-
 
 @endsection

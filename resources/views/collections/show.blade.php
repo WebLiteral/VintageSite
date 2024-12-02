@@ -1,18 +1,15 @@
 @extends('layouts.base')
 
-@section('title', 'All Artworks')
+@section('title', $collection->title)
 
 @section('content')
 
 
 
-<h1 class="h1"> @yield('title') </h1>
-
-<hr class="separator" />
-{{ $allArtworks->links() }}
+<h1 class="h1">Viewing Collection: @yield('title') </h1>
 
 <ul class="grid grid-cols-3">
-@foreach($allArtworks as $artwork)
+@foreach($allArtworksFromCollection as $artwork)
         <li>
             <a class="flex items-center justify-center flex-col link p-2 space-x-4" href="{{route('artworks.show', ['slug' => $artwork->slug]) }}">
                 <img class="image w-32" src="{{$artwork->file_url}}" />
@@ -22,7 +19,6 @@
         </li>
 @endforeach
 </ul>
-{{ $allArtworks->links() }}
 <hr class="separator" />
 
 @endsection

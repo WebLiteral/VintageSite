@@ -4,12 +4,18 @@
 
 @section('content')
 
+
+<h1 class="h1"> @yield('title') </h1>
+
+
 <p class="p">Welcome to the artwork gallery.</p>
 <p class="p">This is a full archive of (hopefully) everything I have drawn, to date. </p>
-<p class="p">Records in this gallery are being continuously updated, and that it is a constant work in progress.</p>
-<h2 class="h2">General Trigger Warning</h2>
-<p class="p">Please note that some artworks in this gallery may be sensitive etc write some shit about that</p>
+<p class="p">Records in this gallery are being continuously updated.</p>
 
+<h2 class="h2">Important Content Warning</h2>
+
+<p class="p">Many artworks on this section of the site contain subject matter.</p>
+<p class="p">Don't proceed if you aren't comfortable with it.</p>
 
 
 <hr class="h-px border-0 my-4 bg-vintage-ivory">
@@ -42,7 +48,7 @@
         </a>
     </li>
     <li class="flex flex-col justify-center text-bold">
-        <a href="">
+        <a href="{{route('artworks.navigate', ['slug' => 'hi', 'action' => 'random'])}}">
             <img class="image w-32 mb-5" src="/img/placeholder.jpg" />
             <h3>Random</h3>
         </a>
